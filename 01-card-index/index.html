@@ -35,7 +35,7 @@
       };
 
 
-      var header =  $('<h2/>', { text : "lul"});
+      //var header =  $('<h2/>', { text : "lul"});
 
       $('<div/>', {
           'id':'myDiv',
@@ -45,30 +45,26 @@
           '                <div class="description">\n' +
                              '<h2>'+ recipe.name +' </h2>\n' +
           '                  <p class="lead">'+recipe.lead+'</p>\n' +
-          '                  <p class="recipe-rating">\n' +
-          '                    <span class="glyphicon glyphicon-star"></span>\n' +
-          '                    <span class="glyphicon glyphicon-star"></span>\n' +
-          '                    <span class="glyphicon glyphicon-star"></span>\n' +
-          '                    <span class="glyphicon glyphicon-star"></span>\n' +
-          '                    <span class="glyphicon glyphicon-star-empty"></span>\n' +
-          '                  </p>\n' +
           '                </div>\n' +
           '              </a>',
       }).appendTo('#recipe-list');
 
+      var stars =  $('<p>', {'class': 'recipe-rating'});
 
+      var plusRatingHTML = $('<span>', {'class': 'glyphicon glyphicon-star'});
+      var negativeRatingHTML = $('<span>', {'class': 'glyphicon glyphicon-star-empty'});
 
+       var plusRating = recipe.rating;
+       var negativeRating = 5-plusRating;
 
-    /* Step 3. Now use all the values in the below object instead of hardcoded values.
-     *         (You will need to move the declaration so that it's above your code.)
-     *
-     *  - The `id` property should be used both in the link and the image.
-     *  - The `name` property is for the <h2> heading
-     *  - The `lead` property is -- you guessed it -- for the paragraph with the "lead" class
-     *  - The `rating` is the trickiest; you'll want one `for` loop making filled glyphicon-star,
-     *    and another making glyphicon-star-empty... for a total of 5 stars.
-     */
+       for(var count = 0; count < plusRating; count ++){
+           $ (stars).append(plusRatingHTML.clone());
+       }
+      for(var count = 0; count < negativeRating; count ++){
+          $ (stars).append(negativeRatingHTML.clone());
+      }
 
+      $ (stars).appendTo('.recipe-card');
 
 
     /* Step 4. Finally, put all of your code in a `for (let recipe of recipes) { ... }` -- the
